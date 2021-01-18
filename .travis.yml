@@ -11,17 +11,17 @@ script:
   - docker run -e CI=true luisfredo/react-test npm test
 
 after_success:
-  - docker build -t luisfredo/multi-client-10-14 ./client
-  - docker build -t luisfredo/multi-nginx-10-14 ./nginx
-  - docker build -t luisfredo/multi-server-10-14 ./server
-  - docker build -t luisfredo/multi-worker-10-14 ./worker
+  - docker build -t luisfredo/multi-client ./client
+  - docker build -t luisfredo/multi-nginx ./nginx
+  - docker build -t luisfredo/multi-server ./server
+  - docker build -t luisfredo/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push luisfredo/multi-client-10-14
-  - docker push luisfredo/multi-nginx-10-14
-  - docker push luisfredo/multi-server-10-14
-  - docker push luisfredo/multi-worker-10-14
+  - docker push luisfredo/multi-client
+  - docker push luisfredo/multi-nginx
+  - docker push luisfredo/multi-server
+  - docker push luisfredo/multi-worker
 
 deploy:
   provider: elasticbeanstalk
